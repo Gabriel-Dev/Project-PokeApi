@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import PokeApiVue from '@/components/PokeApi.vue';
+import HeaderComponent from '@/components/headerComponent.vue'
+import ListComponent from '@/components/listComponent.vue'
+import FormComponent from '@/components/formComponent.vue'
+
 </script>
 
 <template>
+  <HeaderComponent/>
   <main>
-    <PokeApiVue/>
+    <FormComponent/>
+    <ListComponent/>
   </main>
 </template>
+
+<style scoped>
+</style>
 
