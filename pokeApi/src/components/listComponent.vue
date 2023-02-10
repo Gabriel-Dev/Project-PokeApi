@@ -3,8 +3,7 @@ import { api } from '@/services/api';
 import { onMounted, ref } from 'vue';
 import Card from './cardComponent.vue'
 
-
-const pokemons = ref([])
+const pokemons: any = ref([])
 
 const getPokemons = async () => {
     const result = await api.get('/pokemon')

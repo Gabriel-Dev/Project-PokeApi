@@ -1,39 +1,29 @@
 <script lang="ts">
-import { api } from '@/services/api';
+import { router } from '@/router';
 
 export default {
-    data() {
+    data(): any {
         return { pokemon: "" }
     },
     methods: {
-        async searchPokemon(name: string): Promise<void> {
-            try {
-                console.log(name)
-                const pokemon = await api.get(`/pokemon/${name}`)
-                console.log(pokemon.data)
-            }
-            catch (error: any) {
-                console.log(error)
-            }
-
+        searchPokemon(name: string): void {
+            router.push({ name: 'pokemon', params: { name: name } })
         }
     }
 }
 </script>
 
 <template>
-        <form @submit.prevent="searchPokemon(pokemon)">
-            <input type="text" v-model="pokemon" placeholder="Digite aqui...">
-            <button type="submit"> Pesquisar </button>
-        </form>
-        
+    <form @submit.prevent="searchPokemon(pokemon)">
+        <input type="text" v-model="pokemon" placeholder="Digite aqui...">
+        <button type="submit"> Pesquisar </button>
+    </form>
+
 </template>
 
 <style scoped>
-
-form{
+form {
     display: flex;
     justify-content: center;
 }
-
 </style>

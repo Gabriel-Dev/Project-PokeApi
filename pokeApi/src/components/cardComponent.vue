@@ -1,29 +1,35 @@
 <script  lang="ts">
+import { router } from '@/router';
 import { api } from '@/services/api';
 
-
-export default{
-props:{
-    name: String
-},
-data (){
-    return {
-        pokemon: null
+export default {
+    props: {
+        name: String
+    },
+    data(): any {
+        return {
+            pokemon: null
+        }
+    },
+    async mounted() {
+        const result = api.get(`/pokemon/${this.name}`)
+        const { data: pokemon } = await result
+        this.pokemon = pokemon
+    },
+    methods: {
+        searchPokemon(name: string): void {
+            router.push({ name: 'pokemon', params: { name: name } })
+        }
     }
-},
-async mounted(){
-    const result = api.get(`/pokemon/${this.name}`)
-    const { data : pokemon } = await result
-    this.pokemon = pokemon
-}
 }
 
 </script>
 
 <template>
-    <li class="card">
+    <div v-if="!pokemon"> loading...</div>
+    <li v-if="pokemon" class="card" @click="searchPokemon(pokemon.name)">
         <h2 v-if="pokemon">{{ pokemon.name }}</h2>
-        <img v-if="pokemon" :src= pokemon.sprites.other.home.front_default alt="imagem do pokemon">
+        <img v-if="pokemon" :src=pokemon.sprites.other.home.front_default alt="imagem do pokemon">
     </li>
 </template>
 
@@ -44,6 +50,7 @@ async mounted(){
 
     background-color: var(--white-mute);
 }
+
 .card img {
     width: 100%;
     height: 50%;
