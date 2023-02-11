@@ -27,12 +27,12 @@ export default {
 <template>
     <form @submit.prevent="searchPokemon(search)">
         <label for="">
-            <input type="text" v-model="search" placeholder="Digite o nome do pokemon..." >
+            <input type="text" v-model="search" placeholder="Digite o nome do pokemon...">
             <img src="@/assets/img/search.png" alt="icone de busca">
         </label>
     </form>
     <section class="pokemonList">
-        <CardComponent v-for="(pokemon, i) in pokemons" :key="i"  :name="pokemon.name" :search="search"/>
+        <CardComponent v-for="(pokemon, i) in pokemons" :key="i" :name="pokemon.name" :search="search" />
     </section>
 </template>
 
