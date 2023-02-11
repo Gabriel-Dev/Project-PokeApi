@@ -30,10 +30,13 @@ export default {
 </script>
 
 <template>
-    <div v-if="pokemon && search && search.length >= 3 && pokemon.name.includes(search)" class="card" @click="searchPokemon(pokemon.name)">
-    <div class="loading" v-if="!pokemon"> <LoadingComponent/> </div>
-    <img v-if="pokemon" :src=sprite alt="imagem do pokemon">
-    <h2 v-if="pokemon">{{ pokemon.name }}</h2>
+    <div v-if="pokemon && search && search.length >= 3 && pokemon.name.includes(search)" 
+        class="card" @click="searchPokemon(pokemon.name)">
+        <div class="loading" v-if="!pokemon">
+            <LoadingComponent />
+        </div>
+        <img v-if="pokemon" :src=sprite alt="imagem do pokemon">
+        <h2 v-if="pokemon">{{ pokemon.name }}</h2>
     </div>
 </template>
 
